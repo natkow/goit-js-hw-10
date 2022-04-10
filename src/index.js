@@ -12,9 +12,6 @@ const searchBox = document.querySelector('input#search-box');
 const countryList = document.querySelector('ul.country-list');
 const countryInfo = document.querySelector('div.country-info');
 
-// _.debounce(func, [(wait = 0)], [(options = {})]);
-// function debounce(func, wait, options)
-
 const findCountry = () => {
   let name = searchBox.value.trim();
   
@@ -24,9 +21,7 @@ const findCountry = () => {
     countryInfo.innerHTML = '';
   } else {
     fetchCountries(name)
-      // .then(data => console.log('albo tu sa potrzebne dane:', data)) // nie moze byc 2 thenow  z data? albo ten albo render, bo ten nic nie zwraca?
-      // .then(data => renderList(data))
-      // .then(data => renderInfo(data))
+      
       .then(data => {
         console.log('albo tu sa potrzebne dane:', data);
         console.log('ilosc', data.length);
@@ -41,7 +36,7 @@ const findCountry = () => {
           renderInfo(data);
           countryList.innerHTML = '';
         }
-        // else 
+        
       })
       .catch(error => {
         Notiflix.Notify.failure('Oops, there is no country with that name');
@@ -80,26 +75,4 @@ const findCountry = () => {
   searchBox.addEventListener('input', debounce(findCountry, DEBOUNCE_DELAY));
   
 
-  ////////////////////////////////////////////////////
-  // sprawdzenie na dzien dobry czy cos dziala
-  // fetchCountries("asia");
-  // console.log("cos");
-  ////////////////////////////////////////////////////
-  // sprawdzajace logi z findCountry
-  // console.log('findCountry - name:', name);
-  // console.log(
-    //     'findCountry - tu sie drukuje promise(pending) - fetchCountries(name):',
-  //     fetchCountries(name),
-  //   );
-  ////////////////////////////////////////////////////
-  // logi z fetch countries - nie wszystkie dzialaja
-  // .then(data => console.log(data))
-  // console.log('same name?', data[0].name))
-  // .then(data => console.log('same name?', data[0].name))
-// .then(data => data.forEach(d => console.log(d.name)))
-// .then(data => console.log(data[0]))
-////////////////////////////////////////////////////
-// druga wersja z renderList
-// return `<li class="list__item"><img class="list__flag" src="${d.flag}" alt="Flag of ${d.name}" width="55" height="35"></li>
-//   <li class="list__item"><p class="list__name">${d.name}</p></li>`;
-// console.log(markup);
+  

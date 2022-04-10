@@ -1,8 +1,5 @@
-// Napisz funkcję fetchCountries(name) która tworzy żądanie HTTP na nazwa źródła i przekazuje obietnicę z tablicą krajów - wynikiem żądania. Przenieś ją do oddzielnego pliku fetchCountries.js i utwórz eksport nazwany.
-
-
 const fetchCountries = name => {
-  // console.log("fetchCountries, przekazane name:", name);
+  
   return fetch(
     `https://restcountries.com/v2/name/${name}?fields=name,capital,population,flag,languages`,
   )
@@ -13,9 +10,7 @@ const fetchCountries = name => {
       }
       return response.json();
     })
-    // .then(data => console.log('tu sa potrzebne dane: ', data))
-    // .then(data => renderCountryList(data))
-    // .catch(error => console.log('Error 404?: ', error));
+    
 }
 
 export { fetchCountries };
